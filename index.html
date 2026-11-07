@@ -1,0 +1,1174 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#ffffff">
+<title>Senest Downloads</title>
+
+<style>
+:root {
+  --bg: #ffffff;
+  --surface: #ffffff;
+  --soft: #f7f8fa;
+  --text: #17191f;
+  --muted: #737985;
+  --border: #e8eaf0;
+  --accent: #6558e8;
+  --accent-soft: #f0efff;
+  --green: #16865c;
+  --red: #c33;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: Inter, -apple-system, BlinkMacSystemFont,
+    "Segoe UI", Arial, sans-serif;
+}
+
+button, input {
+  font: inherit;
+}
+
+header {
+  height: 76px;
+  padding: 0 7%;
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background: rgba(255,255,255,.95);
+  backdrop-filter: blur(15px);
+}
+
+.logo {
+  font-size: 23px;
+  font-weight: 850;
+  letter-spacing: 2px;
+}
+
+.logo span {
+  color: var(--accent);
+}
+
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 22px;
+}
+
+header a {
+  color: var(--muted);
+  text-decoration: none;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.owner-button {
+  border: 1px solid var(--border);
+  background: white;
+  padding: 10px 15px;
+  border-radius: 10px;
+  color: var(--text);
+  cursor: pointer;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.owner-button:hover {
+  background: var(--soft);
+}
+
+.hero {
+  text-align: center;
+  padding: 95px 20px 70px;
+  background: radial-gradient(
+    ellipse at 50% 0%,
+    #f0efff 0%,
+    transparent 65%
+  );
+}
+
+.tag {
+  color: var(--accent);
+  font-size: 11px;
+  letter-spacing: 3px;
+  font-weight: 800;
+}
+
+.hero h1 {
+  font-size: clamp(39px, 7vw, 68px);
+  letter-spacing: -3px;
+  line-height: 1.08;
+  margin: 22px 0;
+}
+
+.hero p {
+  color: var(--muted);
+  max-width: 550px;
+  margin: auto;
+  line-height: 1.8;
+  font-size: 15px;
+}
+
+main {
+  width: 86%;
+  max-width: 1100px;
+  margin: auto;
+}
+
+.section-title {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 15px;
+  margin-bottom: 22px;
+}
+
+.section-title h2 {
+  font-size: 22px;
+  letter-spacing: -.5px;
+}
+
+.section-title span {
+  color: var(--muted);
+  font-size: 13px;
+}
+
+#search {
+  width: 100%;
+  padding: 16px 18px;
+  margin-bottom: 24px;
+  background: var(--soft);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  color: var(--text);
+  outline: none;
+  font-size: 14px;
+}
+
+#search:focus {
+  border-color: var(--accent);
+  background: white;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 18px;
+}
+
+.app {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 17px;
+  padding: 23px;
+  display: flex;
+  flex-direction: column;
+  gap: 19px;
+  transition: .2s ease;
+  box-shadow: 0 3px 12px rgba(20,25,40,.025);
+}
+
+.app:hover {
+  border-color: #cbc7ff;
+  box-shadow: 0 9px 28px rgba(30,25,80,.07);
+  transform: translateY(-2px);
+}
+
+.app-top {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.app-icon {
+  height: 58px;
+  width: 58px;
+  border-radius: 15px;
+  background: var(--accent-soft);
+  display: grid;
+  place-items: center;
+  font-size: 23px;
+  font-weight: 800;
+  color: var(--accent);
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+.app-icon img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.app h3 {
+  margin: 0 0 7px;
+  font-size: 17px;
+}
+
+.app p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+.meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  color: var(--muted);
+  font-size: 11px;
+}
+
+.pill {
+  background: var(--soft);
+  border: 1px solid var(--border);
+  border-radius: 30px;
+  padding: 6px 10px;
+}
+
+.app-bottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  margin-top: auto;
+}
+
+.version {
+  color: var(--muted);
+  font-size: 12px;
+}
+
+.download {
+  background: var(--text);
+  color: white;
+  text-decoration: none;
+  padding: 11px 16px;
+  border-radius: 9px;
+  font-size: 12px;
+  font-weight: 700;
+  transition: .2s;
+}
+
+.download:hover {
+  background: var(--accent);
+}
+
+.disabled {
+  background: #f0f1f4;
+  color: #969ba5;
+  pointer-events: none;
+}
+
+.state {
+  grid-column: 1 / -1;
+  padding: 35px;
+  text-align: center;
+  border: 1px dashed #d9dce4;
+  border-radius: 15px;
+  color: var(--muted);
+  line-height: 1.7;
+}
+
+.notice {
+  margin-top: 30px;
+  padding: 19px;
+  background: #f8f9fb;
+  border: 1px solid var(--border);
+  border-radius: 13px;
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.8;
+}
+
+.admin-tools {
+  margin-top: 4px;
+  padding-top: 15px;
+  border-top: 1px solid var(--border);
+}
+
+.upload-button {
+  border: 1px solid #d9d5ff;
+  background: var(--accent-soft);
+  color: var(--accent);
+  padding: 9px 12px;
+  border-radius: 9px;
+  font-size: 12px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.upload-button:hover {
+  background: #e7e4ff;
+}
+
+.upload-button:disabled {
+  opacity: .5;
+  cursor: wait;
+}
+
+.upload-status {
+  font-size: 11px;
+  color: var(--muted);
+  margin-top: 8px;
+  overflow-wrap: anywhere;
+}
+
+footer {
+  margin-top: 70px;
+  padding: 28px;
+  border-top: 1px solid var(--border);
+  color: #9297a1;
+  text-align: center;
+  font-size: 12px;
+  line-height: 1.8;
+}
+
+/* Login modal */
+
+.modal-backdrop {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(20,22,35,.45);
+  backdrop-filter: blur(5px);
+  z-index: 50;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+.modal-backdrop.open {
+  display: flex;
+}
+
+.login-modal {
+  background: white;
+  width: 100%;
+  max-width: 390px;
+  padding: 30px;
+  border-radius: 19px;
+  box-shadow: 0 20px 70px rgba(0,0,0,.15);
+}
+
+.login-modal h2 {
+  margin: 0 0 8px;
+  font-size: 23px;
+}
+
+.login-modal p {
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+.login-modal input {
+  width: 100%;
+  padding: 13px;
+  margin-top: 12px;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  outline: none;
+}
+
+.login-modal input:focus {
+  border-color: var(--accent);
+}
+
+.login-submit {
+  width: 100%;
+  margin-top: 17px;
+  padding: 13px;
+  border: 0;
+  border-radius: 10px;
+  background: var(--text);
+  color: white;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.login-submit:disabled {
+  opacity: .6;
+  cursor: wait;
+}
+
+.close-modal {
+  float: right;
+  background: none;
+  border: none;
+  font-size: 22px;
+  cursor: pointer;
+  color: var(--muted);
+}
+
+#loginStatus {
+  min-height: 18px;
+  font-size: 12px;
+  margin-top: 12px;
+  overflow-wrap: anywhere;
+}
+
+@media(max-width:650px) {
+  header {
+    padding: 0 5%;
+  }
+
+  .header-actions {
+    gap: 12px;
+  }
+
+  .header-actions a {
+    display: none;
+  }
+
+  .hero {
+    padding: 70px 20px 55px;
+  }
+
+  .grid {
+    grid-template-columns: 1fr;
+  }
+
+  main {
+    width: 90%;
+  }
+
+  .section-title {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <div class="logo">SENEST<span>.</span></div>
+
+  <div class="header-actions">
+    <a href="https://www.senest.ct.ws/">Main Website ↗</a>
+    <button class="owner-button" id="ownerButton">
+      Owner Login
+    </button>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="tag">OFFICIAL SENEST DOWNLOADS</div>
+
+  <h1>Everything Senest.<br>One destination.</h1>
+
+  <p>
+    Discover the Senest ecosystem. Download official applications
+    and get the latest releases directly from Senest.
+  </p>
+</section>
+
+<main>
+
+  <div class="section-title">
+    <h2>Explore our applications</h2>
+    <span id="count">Loading applications...</span>
+  </div>
+
+  <input
+    id="search"
+    type="search"
+    placeholder="Search applications..."
+  >
+
+  <div class="grid" id="apps">
+    <div class="state">Loading Senest applications...</div>
+  </div>
+
+  <div class="notice">
+    <strong>Installation information</strong><br>
+    Android may ask you to approve installation from your browser.
+    Only install applications downloaded from official Senest sources.
+    Updates require the same app signing certificate as the installed app.
+  </div>
+
+</main>
+
+<footer>
+  © <span id="year"></span> Senest. All rights reserved.
+  <br>
+  Official Senest application distribution.
+</footer>
+
+<!-- OWNER LOGIN -->
+
+<div class="modal-backdrop" id="loginModal">
+  <div class="login-modal">
+
+    <button class="close-modal" id="closeModal" type="button">×</button>
+
+    <h2>Owner access</h2>
+    <p>Sign in using your existing Senest account.</p>
+
+    <form id="loginForm">
+
+      <input
+        type="email"
+        id="email"
+        placeholder="Senest account email"
+        autocomplete="username"
+        required
+      >
+
+      <input
+        type="password"
+        id="password"
+        placeholder="Password"
+        autocomplete="current-password"
+        required
+      >
+
+      <button class="login-submit" id="loginSubmit" type="submit">
+        Sign in
+      </button>
+
+    </form>
+
+    <div id="loginStatus" role="status"></div>
+
+  </div>
+</div>
+
+<!-- SUPABASE LIBRARY -->
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+<script>
+
+// ==================================================
+// 1. SUPABASE CONFIGURATION
+// ==================================================
+
+const SUPABASE_URL =
+  "https://yhrodveoyvmtmrpctkns.supabase.co";
+
+const SUPABASE_PUBLIC_KEY =
+  "sb_publishable_MAYQi8R9klbRfxyJPO-G4A_4XwO5y_b";
+
+const DOWNLOADS_API =
+  SUPABASE_URL + "/functions/v1/senest-downloads";
+
+const OWNER_UID =
+  "dfbef440-9e6a-4121-99a2-b731290cc331";
+
+const LOGO_BUCKET = "senest-app-logos";
+
+// IMPORTANT: Use senestClient consistently.
+// window.supabase is the library loaded from the CDN.
+
+if (!window.supabase) {
+  throw new Error("Supabase library failed to load.");
+}
+
+const senestClient = window.supabase.createClient(
+  SUPABASE_URL,
+  SUPABASE_PUBLIC_KEY
+);
+
+// ==================================================
+// 2. PAGE ELEMENTS
+// ==================================================
+
+const appsContainer = document.getElementById("apps");
+const count = document.getElementById("count");
+const search = document.getElementById("search");
+
+const ownerButton = document.getElementById("ownerButton");
+const loginModal = document.getElementById("loginModal");
+const loginForm = document.getElementById("loginForm");
+const loginStatus = document.getElementById("loginStatus");
+const loginSubmit = document.getElementById("loginSubmit");
+
+let applications = [];
+let isOwner = false;
+
+document.getElementById("year").textContent =
+  new Date().getFullYear();
+
+// ==================================================
+// 3. HELPER FUNCTIONS
+// ==================================================
+
+function safe(value) {
+  return String(value ?? "").replace(/[&<>"']/g, char => ({
+    "&": "&amp;",
+    "<": "&lt;",
+    ">": "&gt;",
+    '"': "&quot;",
+    "'": "&#39;"
+  })[char]);
+}
+
+function fileSize(bytes) {
+  if (!bytes) return "";
+
+  const mb = Number(bytes) / 1048576;
+
+  return mb >= 1024
+    ? (mb / 1024).toFixed(1) + " GB"
+    : mb.toFixed(1) + " MB";
+}
+
+function validImageUrl(url) {
+  try {
+    return new URL(url).protocol === "https:";
+  } catch {
+    return false;
+  }
+}
+
+function validDownloadUrl(url) {
+  try {
+    return new URL(url).protocol === "https:";
+  } catch {
+    return false;
+  }
+}
+
+function showLoginMessage(message, success = false) {
+  loginStatus.textContent = message;
+  loginStatus.style.color = success ? "#16865c" : "#c33";
+}
+
+// ==================================================
+// 4. OWNER AUTHENTICATION
+// ==================================================
+
+async function checkOwner() {
+  const { data, error } = await senestClient.auth.getSession();
+
+  if (error) {
+    console.error("Session error:", error);
+    return;
+  }
+
+  const user = data.session?.user;
+
+  isOwner = Boolean(user && user.id === OWNER_UID);
+
+  updateOwnerButton();
+}
+
+function updateOwnerButton() {
+  ownerButton.textContent = isOwner
+    ? "Owner Panel · Sign out"
+    : "Owner Login";
+}
+
+ownerButton.addEventListener("click", async () => {
+
+  if (isOwner) {
+    const { error } = await senestClient.auth.signOut();
+
+    if (error) {
+      console.error("Sign out failed:", error);
+      return;
+    }
+
+    isOwner = false;
+    updateOwnerButton();
+    renderApps();
+    return;
+  }
+
+  loginForm.reset();
+  showLoginMessage("");
+  loginModal.classList.add("open");
+
+});
+
+document.getElementById("closeModal").addEventListener("click", () => {
+  loginModal.classList.remove("open");
+});
+
+loginModal.addEventListener("click", event => {
+  if (event.target === loginModal) {
+    loginModal.classList.remove("open");
+  }
+});
+
+// LOGIN FORM
+
+loginForm.addEventListener("submit", async event => {
+
+  event.preventDefault();
+
+  const email = document.getElementById("email").value.trim();
+  const password = document.getElementById("password").value;
+
+  loginSubmit.disabled = true;
+  loginSubmit.textContent = "Signing in...";
+
+  showLoginMessage("Checking your account...", true);
+
+  try {
+
+    const { data, error } =
+      await senestClient.auth.signInWithPassword({
+        email,
+        password
+      });
+
+    if (error) throw error;
+
+    if (!data.user || data.user.id !== OWNER_UID) {
+
+      await senestClient.auth.signOut();
+
+      throw new Error(
+        "This Senest account does not have owner access."
+      );
+
+    }
+
+    isOwner = true;
+
+    updateOwnerButton();
+
+    showLoginMessage("Owner access granted.", true);
+
+    renderApps();
+
+    setTimeout(() => {
+      loginModal.classList.remove("open");
+    }, 600);
+
+  } catch (error) {
+
+    console.error("Login error:", error);
+
+    showLoginMessage(error.message || "Login failed.");
+
+  } finally {
+
+    loginSubmit.disabled = false;
+    loginSubmit.textContent = "Sign in";
+
+  }
+
+});
+
+// LISTEN FOR AUTHENTICATION CHANGES
+
+senestClient.auth.onAuthStateChange((_event, session) => {
+
+  isOwner = Boolean(session?.user?.id === OWNER_UID);
+
+  updateOwnerButton();
+
+  renderApps();
+
+});
+
+// ==================================================
+// 5. LOAD LOGO URLS FROM DATABASE
+// ==================================================
+
+async function loadLogoData() {
+
+  const { data, error } = await senestClient
+    .from("senest_apps")
+    .select("id, logo_url");
+
+  if (error) {
+    console.error("Logo database error:", error);
+    throw error;
+  }
+
+  const logoMap = new Map(
+    (data || []).map(item => [
+      item.id,
+      item.logo_url
+    ])
+  );
+
+  applications = applications.map(app => ({
+    ...app,
+    logo_url: logoMap.get(app.id) || ""
+  }));
+
+}
+
+// ==================================================
+// 6. RENDER APPLICATION CARDS
+// ==================================================
+
+function renderApps() {
+
+  const term = search.value.toLowerCase().trim();
+
+  const filtered = applications.filter(app =>
+    (
+      (app.name || "") + " " +
+      (app.description || "")
+    ).toLowerCase().includes(term)
+  );
+
+  count.textContent = filtered.length + " applications";
+
+  if (!filtered.length) {
+
+    appsContainer.innerHTML =
+      '<div class="state">No applications found.</div>';
+
+    return;
+
+  }
+
+  appsContainer.innerHTML = filtered.map(app => {
+
+    const available = Boolean(
+      app.available &&
+      validDownloadUrl(app.download_url)
+    );
+
+    const name = safe(app.name);
+    const description = safe(app.description);
+
+    const version = app.latest_version
+      ? "Version " + safe(app.latest_version)
+      : "No release published yet";
+
+    const size = fileSize(app.file_size);
+
+    const logo = validImageUrl(app.logo_url)
+      ? `<img src="${safe(app.logo_url)}" alt="${name} logo">`
+      : safe((app.name || "S").charAt(0).toUpperCase());
+
+    const adminPanel = isOwner ? `
+
+      <div class="admin-tools">
+
+        <button
+          type="button"
+          class="upload-button"
+          data-upload="${safe(app.id)}">
+
+          ↑ ${app.logo_url ? "Change app logo" : "Upload app logo"}
+
+        </button>
+
+        <input
+          type="file"
+          accept="image/png,image/jpeg,image/webp"
+          data-file="${safe(app.id)}"
+          hidden
+        >
+
+        <div
+          class="upload-status"
+          data-status="${safe(app.id)}">
+          Owner controls
+        </div>
+
+      </div>
+
+    ` : "";
+
+    return `
+
+      <article class="app">
+
+        <div class="app-top">
+
+          <div class="app-icon">
+            ${logo}
+          </div>
+
+          <div>
+            <h3>${name}</h3>
+            <p>${description}</p>
+          </div>
+
+        </div>
+
+        <div class="meta">
+
+          <span class="pill">${version}</span>
+
+          ${size
+            ? `<span class="pill">${safe(size)}</span>`
+            : ""}
+
+          ${app.mandatory
+            ? '<span class="pill">Required update</span>'
+            : ""}
+
+        </div>
+
+        <div class="app-bottom">
+
+          <span class="version">
+            ${available ? "Android APK" : "Coming soon"}
+          </span>
+
+          <a
+            class="download ${available ? "" : "disabled"}"
+            href="${available ? safe(app.download_url) : "#"}"
+            ${available
+              ? 'target="_blank" rel="noopener noreferrer"'
+              : 'aria-disabled="true"'}>
+            ${available ? "↓ Download APK" : "Unavailable"}
+          </a>
+
+        </div>
+
+        ${adminPanel}
+
+      </article>
+
+    `;
+
+  }).join("");
+
+}
+
+// ==================================================
+// 7. OPEN LOGO FILE PICKER
+// ==================================================
+
+appsContainer.addEventListener("click", event => {
+
+  const button = event.target.closest("[data-upload]");
+
+  if (!button || !isOwner) return;
+
+  const appId = button.dataset.upload;
+
+  const input = appsContainer.querySelector(
+    `[data-file="${CSS.escape(appId)}"]`
+  );
+
+  if (input) {
+    input.click();
+  }
+
+});
+
+// ==================================================
+// 8. UPLOAD APP LOGO
+// ==================================================
+
+appsContainer.addEventListener("change", async event => {
+
+  const input = event.target;
+
+  if (!input.matches("[data-file]")) return;
+
+  if (!isOwner) {
+    alert("Owner access required.");
+    return;
+  }
+
+  const appId = input.dataset.file;
+  const file = input.files?.[0];
+
+  if (!file) return;
+
+  const status = appsContainer.querySelector(
+    `[data-status="${CSS.escape(appId)}"]`
+  );
+
+  const button = appsContainer.querySelector(
+    `[data-upload="${CSS.escape(appId)}"]`
+  );
+
+  const allowedTypes = [
+    "image/png",
+    "image/jpeg",
+    "image/webp"
+  ];
+
+  if (!allowedTypes.includes(file.type)) {
+
+    status.textContent = "Use PNG, JPG or WebP images.";
+
+    input.value = "";
+
+    return;
+
+  }
+
+  if (file.size > 2 * 1024 * 1024) {
+
+    status.textContent = "Maximum logo size is 2 MB.";
+
+    input.value = "";
+
+    return;
+
+  }
+
+  button.disabled = true;
+  status.textContent = "Uploading logo...";
+
+  try {
+
+    // Confirm the current user is still the owner.
+
+    const { data: sessionData, error: sessionError } =
+      await senestClient.auth.getSession();
+
+    if (sessionError) throw sessionError;
+
+    if (sessionData.session?.user?.id !== OWNER_UID) {
+      throw new Error("Owner authentication expired. Sign in again.");
+    }
+
+    const extension = file.type === "image/png"
+      ? "png"
+      : file.type === "image/webp"
+        ? "webp"
+        : "jpg";
+
+    const filePath = appId + "/logo." + extension;
+
+    // Upload image to Supabase Storage.
+
+    const { error: uploadError } = await senestClient.storage
+      .from(LOGO_BUCKET)
+      .upload(filePath, file, {
+        contentType: file.type,
+        cacheControl: "3600",
+        upsert: true
+      });
+
+    if (uploadError) throw uploadError;
+
+    // Generate public image URL.
+
+    const { data: publicData } = senestClient.storage
+      .from(LOGO_BUCKET)
+      .getPublicUrl(filePath);
+
+    const publicUrl = publicData.publicUrl;
+
+    // Save URL in senest_apps.
+
+    const { error: updateError } = await senestClient
+      .from("senest_apps")
+      .update({
+        logo_url: publicUrl
+      })
+      .eq("id", appId);
+
+    if (updateError) throw updateError;
+
+    status.textContent = "Logo saved successfully.";
+
+    // Reload catalogue and logos.
+
+    await loadApps();
+
+  } catch (error) {
+
+    console.error("Logo upload error:", error);
+
+    status.textContent = "Upload failed: " + error.message;
+
+  } finally {
+
+    button.disabled = false;
+    input.value = "";
+
+  }
+
+});
+
+// ==================================================
+// 9. LOAD SENEST APPLICATIONS
+// ==================================================
+
+async function loadApps() {
+
+  try {
+
+    const response = await fetch(DOWNLOADS_API, {
+      method: "GET",
+      headers: {
+        "apikey": SUPABASE_PUBLIC_KEY,
+        "Authorization": "Bearer " + SUPABASE_PUBLIC_KEY
+      }
+    });
+
+    if (!response.ok) {
+      throw new Error(
+        "Downloads API returned HTTP " + response.status
+      );
+    }
+
+    const result = await response.json();
+
+    if (!result.success || !Array.isArray(result.apps)) {
+      throw new Error("Invalid downloads API response.");
+    }
+
+    applications = result.apps;
+
+    await loadLogoData();
+
+    renderApps();
+
+  } catch (error) {
+
+    console.error("Application loading error:", error);
+
+    count.textContent = "Unable to load";
+
+    appsContainer.innerHTML = `
+
+      <div class="state">
+        Could not load Senest applications.<br>
+        ${safe(error.message)}
+      </div>
+
+    `;
+
+  }
+
+}
+
+// ==================================================
+// 10. SEARCH
+// ==================================================
+
+search.addEventListener("input", renderApps);
+
+// ==================================================
+// 11. INITIALISE WEBSITE
+// ==================================================
+
+async function initialise() {
+
+  await checkOwner();
+
+  await loadApps();
+
+}
+
+initialise();
+
+</script>
+
+</body>
+</html>
